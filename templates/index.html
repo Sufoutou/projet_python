@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Analyzer</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        button, input[type="submit"] {
+            display: block;
+            width: auto;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+        }
+        #button1 {
+            background-color: #007BFF;
+            color: white;
+        }
+        #button2 {
+            background-color: #6f42c1;
+            color: white;
+        }
+        #button3 {
+            background-color: #28a745;
+            color: white;
+        }
+        #button4 {
+            background-color: #dc3545;
+            color: white;
+        }
+        #button5 {
+            background-color: #ffc107;
+            color: black;
+        }
+        #button6 {
+            background-color: #17a2b8;
+            color: white;
+        }
+        button:hover {
+            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+            color: white;
+            transform: translateY(-7px);
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+            color: white;
+            transform: translateY(-7px);
+        }
+        form {
+            margin-bottom: 20px;
+        }
+		
+		 input[type="text"] {
+            margin-bottom: 10px;
+        }
+		
+		@keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+    </style>
+
+
+    <script>
+        var clickCount = 0;
+        var lastClick = 0;
+
+        document.addEventListener('click', function() {
+            var currentTime = new Date().getTime();
+            if (currentTime - lastClick < 500) {
+                clickCount++;
+                if (clickCount === 10) {
+                    document.body.style.animation = 'shake 0.5s';
+                    document.body.style.animationIterationCount = 'infinite';
+                }
+            } else {
+                clickCount = 0;
+            }
+            lastClick = currentTime;
+        });
+
+
+    </script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("input[type='submit']").mouseenter(function(){
+            $(this).css({
+                "position": "absolute",
+                "left": Math.random() * ($(window).width() - $(this).width()) + "px",
+                "top": Math.random() * ($(window).height() - $(this).height()) + "px",
+                "transition": "all 0.5s ease"
+            });
+        });
+    });
+</script>
+	
+
+
+</head>
+<body>
+
+
+
+    <h1>Log Analyzer</h1>
+    <form action="/home" method="post" enctype="multipart/form-data">
+        <label for="file">Choisissez un fichier de logs:</label>
+        <input type="file" id="file" name="file" accept=".log">
+        <input type="submit" value="Upload">
+    </form>
+    <div class="button-container">
+        <form action="/home" method="post">
+            <input type="hidden" name="choix" value="2">
+            <input type="submit" value="Afficher les logs pour une adresse IP précise">
+        </form>
+        <form action="/home" method="post">
+            <input type="hidden" name="choix" value="3">
+            <input type="submit" value="Afficher les logs pour une heure précise">
+        </form>
+        <form action="/home" method="post">
+            <input type="hidden" name="choix" value="4">
+            <input type="submit" value="Afficher les logs avec des requêtes POST">
+        </form>
+        <form action="/home" method="post">
+            <input type="hidden" name="choix" value="5">
+            <input type="submit" value="Afficher les logs avec des requêtes GET">
+        </form>
+        <form action="/home" method="post">
+            <input type="hidden" name="choix" value="6">
+            <input type="submit" value="Afficher les logs pour un type de navigateur précis">
+        </form>
+    </div>
+
+	
+	<footer>
+        <p>&copy; 2023 Rom1</p>
+    </footer>
+	
+</body>
+</html>
